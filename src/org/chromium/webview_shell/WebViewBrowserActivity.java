@@ -6,6 +6,7 @@ package org.chromium.webview_shell;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -156,6 +157,10 @@ public class WebViewBrowserActivity extends Activity implements PopupMenu.OnMenu
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+	if(ActivityManager.isUserAMonkey()){
+	    Log.d("Browser2","monkey run finished");
+	    this.finish();
+	}
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
